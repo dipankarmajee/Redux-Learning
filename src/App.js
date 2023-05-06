@@ -1,12 +1,12 @@
-import CarForm from "./components/CarForm";
-import CarList from "./components/CarList";
-import CarSearch from "./components/CarSearch";
-import CarValue from "./components/CarValue";
+import CarForm from "./component/CarForm";
+import CarList from "./component/CarList";
+import CarSearch from "./component/CarSearch";
+import CarValue from "./component/CarValue";
 
 const App = () => {
   return (
-    <div className="m-5 d-flex justify-content-center align-items-center vh-100">
-      <div className="w-50 shadow rounded p-3 d-flex flex-column gap-4 bg-light">
+    <div className="d-flex justify-content-center align-items-center vh-100 vw-100">
+      <div className="w-50 h-50 shadow p-5 d-flex flex-column justify-content-center align-items-center rounded gap-3">
         <CarForm />
         <CarSearch />
         <CarList />
