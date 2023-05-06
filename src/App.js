@@ -1,26 +1,19 @@
-import "./styles.css";
-import MoviePlaylist from "./components/MoviePlaylist";
-import SongPlaylist from "./components/SongPlaylist";
-import { useDispatch } from "react-redux";
-import { reset } from "./store";
+import CarForm from "./components/CarForm";
+import CarList from "./components/CarList";
+import CarSearch from "./components/CarSearch";
+import CarValue from "./components/CarValue";
 
-export default function App() {
-  const dispatch = useDispatch();
-  const handleResetClick = () => {
-    //
-    console.log("triggered");
-    dispatch(reset());
-  };
-
+const App = () => {
   return (
-    <div className="container is-fluid">
-      <button onClick={() => handleResetClick()} className="button is-danger">
-        Reset Both Playlists
-      </button>
-      <hr />
-      <MoviePlaylist />
-      <hr />
-      <SongPlaylist />
+    <div className="m-5 d-flex justify-content-center align-items-center vh-100">
+      <div className="w-50 shadow rounded p-3 d-flex flex-column gap-4 bg-light">
+        <CarForm />
+        <CarSearch />
+        <CarList />
+        <CarValue />
+      </div>
     </div>
   );
-}
+};
+
+export default App;
