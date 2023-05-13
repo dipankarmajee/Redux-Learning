@@ -1,5 +1,7 @@
+import UserList from "./components/UserList";
+
 const App = () => {
-  return <div>Hello World!</div>;
+  return <UserList />;
 };
 
 export default App;
