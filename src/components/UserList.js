@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addUsers, fetchUsers } from "../store";
 import SkeletonLoader from "./SkeletonLoader";
@@ -9,14 +9,19 @@ import {
 
 const UserList = () => {
   const dispatch = useDispatch();
+  const [isLoadingUsers, setIsLoadingUsers] = useState(false);
+  const [userError, setUserError] = useState(null);
   const users = useSelector((state) => state.users);
 
   useEffect(() => {
-    dispatch(fetchUsers());
+    setIsLoadingUsers(true);
+    dispatch(fetchUsers())
+      .unwrap()
+      .catch((err) => setUserError(err))
+      .finally(() => setIsLoadingUsers(false));
   }, [dispatch]);
 
-  console.log(users);
-  if (users.isLoading) {
+  if (isLoadingUsers) {
     return (
       <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
         <SkeletonLoader data={6} />
@@ -24,10 +29,11 @@ const UserList = () => {
     );
   }
 
-  if (users.error) {
+  if (userError) {
     return (
-      <div className="d-flex justify-content-center align-items-center vw-100 vh-100">
+      <div className="d-flex flex-column justify-content-center align-items-center vw-100 vh-100">
         <h4>Something went wrong</h4>
+        <h6>{userError.message}</h6>
       </div>
     );
   }
